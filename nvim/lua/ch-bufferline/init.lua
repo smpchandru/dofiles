@@ -32,7 +32,7 @@ require("bufferline").setup({
 		separator_style = "thin",
 	},
 	highlights = {
-		fill = {
+		--[[ fill = {
 			guifg = {attribute = "fg", highlight = "Normal"},
 			guibg = {attribute = "bg", highlight = "StatusLineNC"},
 		},
@@ -74,6 +74,6 @@ require("bufferline").setup({
 			guifg = {attribute = "fg", highlight="normal"},
 			guibg = {attribute = "bg", highlight = "normal"}
 		},
-
+]]
 	},
 })
