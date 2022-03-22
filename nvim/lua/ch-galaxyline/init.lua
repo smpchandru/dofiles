@@ -99,8 +99,8 @@ gls.right[2] = {
 gls.left[3] = {
     GitIcon = {
         provider = function()
-			return ' '
-            --return ' '
+			-- return ' '
+            return ''
         end,
         condition = condition.check_git_workspace,
         separator = ' ',

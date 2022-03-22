@@ -25,7 +25,7 @@ local sigConfig = {
 	max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
 	-- to view the hiding contents
 	max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
-	transpancy = 10,
+	transpancy = 100,
 	handler_opts = {
 		border = "single", -- double, single, shadow, none
 	},

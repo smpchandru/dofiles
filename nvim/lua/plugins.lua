@@ -162,7 +162,7 @@ return packer.startup({
 					paths = { "~/.local/share/nvim/site/pack/packer/opt/friendly-snippets/" },
 				})
 			end,
-			requires = { 
+			requires = {
 				"rafamadriz/friendly-snippets", event = "InsertCharPre" , commit = pluginCommits.friendly_snippets },
 		})
 		if O.lsp_client == true then
@@ -310,6 +310,69 @@ return packer.startup({
 			-- disable = not O.plugin.delve.enable,
 			ft = "go",
 		})
+		--[[ use({
+			"nvim-lualine/lualine.nvim",
+			config=function ()
+				require('lualine').setup(
+				{
+					options = {
+						theme = 'gruvbox-material' ,
+						section_separators = { left = '', right = ''},
+						component_separators = { left = '', right = ''},
+						section_separators = { left = '', right = ''},
+						component_separators = { left = '', right = ''},
+					},
+					sections = {
+						lualine_a ={{ 'mode',fmt = function (str)
+							if string.find(str, 'BLOCK') then
+								return "VB"
+							end
+							return str:sub(1,1)
+						end}},
+						lualine_b = {'branch'},
+						lualine_c = {{'filename'},   {
+							'diff',
+							colored = true, -- Displays a colored diff status if set to true
+							diff_color = {
+								-- Same color values as the general color option can be used here.
+								added    = 'DiffAdd',    -- Changes the diff's added color
+								modified = 'DiffChange', -- Changes the diff's modified color
+								removed  = 'DiffDelete', -- Changes the diff's removed color you
+							},
+							symbols = {added = ' ', modified = ' ', removed = ' '}
+						}},
+						lualine_x = {{
+							'diagnostics',
+
+							-- Table of diagnostic sources, available sources are:
+							--   'nvim_lsp', 'nvim_diagnostic', 'coc', 'ale', 'vim_lsp'.
+							-- or a function that returns a table as such:
+							--   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
+							sources = { 'nvim_diagnostic'},
+
+							-- Displays diagnostics for the defined severity types
+							sections = { 'error', 'warn', 'info', 'hint' },
+
+							diagnostics_color = {
+								-- Same values as the general color option can be used here.
+								error = 'DiagnosticError', -- Changes diagnostics' error color.
+								warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
+								info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
+								hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
+							},
+							symbols = {error = ' ', warn = '  ', info = '  ', hint = '  '},
+							colored = true,           -- Displays diagnostics status in color if set to true.
+							update_in_insert = false, -- Update diagnostics in insert mode.
+							always_visible = false,   -- Show diagnostics even if there are none.
+						}},
+						lualine_y = {'progress'},
+						lualine_z = {'location'},
+					} ,
+					tabline = {},
+					extensions = {}
+				})
+		end
+		}) ]]
 		-- status/tab line
 		use({
 			"NTBBloodbath/galaxyline.nvim",
@@ -429,6 +492,12 @@ return packer.startup({
 		use {
 			'Mofiqul/vscode.nvim',
 			commit = pluginCommits.vscode_nvim,
+		}
+		use {
+			'sainnhe/gruvbox-material',
+		}
+		use {
+			"cespare/vim-go-templates"
 		}
 		require("packer_compiled")
 	end,

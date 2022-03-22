@@ -3,7 +3,7 @@ DATA_PATH = vim.fn.stdpath("data")
 CACHE_PATH = vim.fn.stdpath("cache")
 
 O = {
-	colorscheme = "vscode",
+	colorscheme = "gruvbox-material",
 	leader_key = " ",
 	hidden_files = true,
 	wrap_lines = false,

@@ -95,6 +95,6 @@ end
 
 -- navigte back with mouse right clicks
 map("n", "<C-RightMouse>", "<C-t>", { silent = true })
-map("n", "<C-LeftMouse>", "<C-]>", { silent = true })
+map("n", "<C-LeftMouse>",":lua vim.lsp.buf.definition()<CR>", { silent = true })
 -- projects explorer
 map("n", "<leader>w", ":Telescope projects<CR>", { silent = true })

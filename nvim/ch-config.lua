@@ -1,4 +1,4 @@
-O.colorscheme = "vscode"
+O.colorscheme = "gruvbox-material"
 O.hidden_files = true
 O.wrap_lines = false
 O.number = true

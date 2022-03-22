@@ -1,4 +1,4 @@
-opt = vim.opt
+local opt = vim.opt
 opt.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.wo.wrap = false -- Display long lines as just one line
 opt.fileencoding = "utf-8" -- The encoding written to file
@@ -63,3 +63,8 @@ vim.cmd("hi Search cterm=NONE ctermfg=grey ctermbg=blue")
 vim.cmd("highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15")
 vim.g.highlightedyank_highlight_duration = 10000
 vim.cmd("colorscheme " .. O.colorscheme)
+vim.g.gruvbox_material_background = 'hard'
+vim.opt.listchars:append("eol:↴")
+if vim.g.neovide then
+	vim.cmd("set mouse=a")
+end
