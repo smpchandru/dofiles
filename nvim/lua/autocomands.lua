@@ -71,9 +71,9 @@ Aucom.define_augroups({
 			"setf groovy",
 		},
 		{ "FileType", "qf", "nnoremap <buffer><silent> <esc> :quit<cr>" },
-		{ "CursorHold", "*", ':lua require("ch-gitblame").BlameVirtText()' },
-		{ "CursorMoved", "*", ':lua require("ch-gitblame").ClearBlameVirtText()' },
-		{ "CursorMovedI", "*", ':lua require("ch-gitblame").ClearBlameVirtText()' },
+		{ "CursorHold", "*", ':lua require("plugincfg.gitblame").BlameVirtText()' },
+		{ "CursorMoved", "*", ':lua require("plugincfg.gitblame").ClearBlameVirtText()' },
+		{ "CursorMovedI", "*", ':lua require("plugincfg.gitblame").ClearBlameVirtText()' },
 	},
 })
 --[[ function OrgImports(wait_ms)

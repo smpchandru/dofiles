@@ -202,7 +202,7 @@ return packer.startup({
 				commit = pluginCommits.symbols_outline_nvim,
 				cmd = "SymbolsOutline",
 				setup = function()
-					require("ch-symboloutline")
+					require("plugincfg.symboloutline")
 				end,
 				disable = not O.plugin.symbol_outline.enable,
 			})
@@ -220,7 +220,7 @@ return packer.startup({
 			commit = pluginCommits.gitsigns_nvim,
 			lock = true,
 			config = function()
-				require("ch-gitsign").config()
+				require("plugincfg.gitsign").config()
 			end,
 			requires = {
 				commit = pluginCommits.plenary_nvim,
@@ -244,7 +244,7 @@ return packer.startup({
 			},
 			disable = not O.plugin.neogit.enable,
 			config = function()
-				require("ch-neogit")
+				require("plugincfg.neogit")
 			end,
 		})
 		use({
@@ -256,7 +256,7 @@ return packer.startup({
 			"nvim-telescope/telescope.nvim",
 				commit = pluginCommits.telescope_nvim,
 			config = function()
-				require("ch-telescope")
+				require("plugincfg.telescope")
 				require("telescope").load_extension("media_files")
 				require("telescope").load_extension("fzf")
 			end,
@@ -272,7 +272,7 @@ return packer.startup({
 			commit = pluginCommits.hop_nvim,
 			event = "BufRead",
 			config = function()
-				require("ch-hop").config()
+				require("plugincfg.hop").config()
 			end,
 			disable = not O.plugin.hop.enable,
 			opt = true,
@@ -288,7 +288,7 @@ return packer.startup({
 			ft = "go",
 			disable = not O.plugin.vim_go.enable,
 			config = function()
-				require("ch-vimgo")
+				require("plugincfg.vimgo")
 			end,
 		}) ]]
 		use({
@@ -379,14 +379,14 @@ return packer.startup({
 			commit = pluginCommits.galaxyline_nvim,
 			-- your statusline
 			config = function()
-				require("ch-galaxyline")
+				require("plugincfg.galaxyline")
 			end,
 			disable = not O.plugin.galaxyline.enable,
 		})
 		use({
 		"akinsho/bufferline.nvim",
 		commit = pluginCommits.bufferline_nvim,
-		config = function () require('ch-bufferline') end
+		config = function () require('plugincfg.bufferline') end
 		})
 
 		-- markdown
@@ -405,7 +405,7 @@ return packer.startup({
 			commit = pluginCommits.vim_floaterm,
 			disable = not O.plugin.floaterm.enable,
 			config = function()
-				require("ch-floaterm").config()
+				require("plugincfg.floaterm").config()
 			end,
 		})
 		-- appearance and color schmes
@@ -419,7 +419,7 @@ return packer.startup({
 			commit = pluginCommits.nvim_treesitter,
 		run = ":TSUpdate",
 			config = function()
-				require("ch-treesitter").config()
+				require("plugincfg.treesitter").config()
 			end,
 			requires = {
 				{"nvim-treesitter/nvim-treesitter-refactor",commit = pluginCommits.nvim_treesitter_refactor},
@@ -434,7 +434,7 @@ return packer.startup({
 			"lukas-reineke/indent-blankline.nvim",
 			commit = pluginCommits.indent_blankline_nvim,
 			config = function()
-				require("ch-indentline").config()
+				require("plugincfg.indentline").config()
 			end,
 			disable = not O.plugin.indentblankline.enable,
 		})
@@ -442,7 +442,7 @@ return packer.startup({
 			"folke/which-key.nvim",
 			commit = pluginCommits.which_key_nvim,
 			config = function()
-				require("ch-whichkey").config()
+				require("plugincfg.whichkey").config()
 			end,
 			disable = not O.plugin.whichkey.enable,
 		})
@@ -470,7 +470,7 @@ return packer.startup({
 			commit = pluginCommits.dashboard_nvim,
 			event = "BufWinEnter",
 			config = function()
-				require("ch-dashboard").setup()
+				require("plugincfg.dashboard").setup()
 			end,
 			disable = not O.plugin.dashboard.enable,
 		})

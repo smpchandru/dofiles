@@ -4,8 +4,8 @@ require("lspkind").init({
 	preset = "codicons",
 })
 -- nvim-cmp settings
-require("ch-comp").config()
-require("ch-autopairs")
+require("plugincfg.comp").config()
+require("plugincfg.autopairs")
 -- lsp signature related settings
 local sigConfig = {
 	bind = true, -- This is mandatory, otherwise border config won't get registered.
