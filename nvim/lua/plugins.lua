@@ -14,6 +14,7 @@ if not packer_ok then
 	return
 end
 
+
 packer.init({
 	-- compile_path = vim.fn.stdpath('data')..'/site/pack/loader/start/packer.nvim/plugin/packer_compiled.vim',
 	compile_path = require("packer.util").join_paths(vim.fn.stdpath("config"), "plugin", "packer_compiled.vim"),
@@ -26,6 +27,73 @@ packer.init({
 })
 vim.cmd("autocmd BufWritePost plugins.lua PackerCompile")
 local pluginCommits = {
+	bufferline_nvim = "main",
+	cmp_buffer = "main",
+	cmp_calc = "main",
+	cmp_cmdline = "main",
+	cmp_dictionary = "main",
+	cmp_latex_symbols = "main",
+	cmp_nvim_lsp = "main",
+	cmp_nvim_lua = "main",
+	cmp_path = "main",
+	cmp_spell = "master",
+	cmp_luasnip = "master",
+	Comment_nvim = "master",
+	diffview_nvim = "main",
+	friendly_snippets = "master",
+	galaxyline_nvim = "main",
+	git_messenger_vim = "master",
+	impatient_nvim = "master",
+	indent_blankline_nvim = "master",
+	lsp_signature_nvim = "master",
+	lspkind_nvim = "master",
+	lua_language_server = "master",
+	LuaSnip = "master",
+	neogit = "master",
+	nvcode_color_schemes_vim = "master",
+	nvim_autopairs = "master",
+	nvim_bqf = "main",
+	nvim_cmp = "main",
+	nvim_colorizer_lua = "master",
+	nvim_dap = "master",
+	nvim_dap_ui = "master",
+	nvim_dap_virtual_text = "master",
+	nvim_lsp_installer = "main",
+	nvim_lspconfig = "master",
+	nvim_treesitter = "master",
+	nvim_treesitter_context = "master",
+	nvim_treesitter_refactor = "master",
+	nvim_treesitter_textobjects = "master",
+	nvim_ts_rainbow = "master",
+	packer_nvim = "master",
+	plenary_nvim = "master",
+	popup_nvim = "master",
+	project_nvim = "main",
+	telescope_fzf_native_nvim = "main",
+	telescope_fzf_writer_nvim = "master",
+	telescope_media_files_nvim = "master",
+	telescope_nvim = "master",
+	trouble_nvim = "main",
+	vCoolor_vim = "master",
+	vim_floaterm = "master",
+	vim_highlightedyank = "master",
+	vim_repeat = "master",
+	vim_surround = "master",
+	vim_visual_multi = "master",
+	vscode_nvim = "main",
+	which_key_nvim = "main",
+	dashboard_nvim = "master",
+	gitsigns_nvim = "master",
+	go_nvim = "master",
+	hop_nvim = "master",
+	markdown_preview_nvim = "master",
+	nvim_web_devicons = "master",
+	symbols_outline_nvim = "master",
+	vim_delve = "master",
+	gruvbox = "chandru",
+
+}
+--[[ local pluginCommits = {
 	bufferline_nvim="871495d9e2dbe3314a421fd2d5e46f47de7ee537",
 	cmp_buffer="d66c4c2d376e5be99db68d2362cd94d250987525",
 	cmp_calc="eb7bd1d7382ac26d8eb7346e36405c0ae94333a2",
@@ -89,8 +157,9 @@ local pluginCommits = {
 	nvim_web_devicons="4415d1aaa56f73b9c05795af84d625c610b05d3b",
 	symbols_outline_nvim="1361738c47892c3cee0d0b7a3b3bc7a8b48139c2",
 	vim_delve="554b7997caba5d2b38bc4a092e3a468e4abb7f18",
-
-}
+	gruvbox = "chandru",
+	
+} ]]
 
 
 return packer.startup({
@@ -140,7 +209,7 @@ return packer.startup({
 				require("project_nvim").setup({
 					manual_mode = false,
 					detection_methods = { "lsp", "pattern" },
-					patterns = { ".git","Makefile" },
+					patterns = { ".git", "Makefile" },
 					-- ignore_lsp = { "go" },
 					show_hidden = false,
 					exclude_dirs = { "~/go/*/*/*/*" },
@@ -156,41 +225,42 @@ return packer.startup({
 			"L3MON4D3/LuaSnip",
 			commit = pluginCommits.LuaSnip,
 			config = function()
-				require("snippets")
+				require("plugincfg.snippets")
 				require("luasnip/loaders/from_vscode").load({
 					include = { "go", "python", "bash" },
-					paths = { "~/.local/share/nvim/site/pack/packer/opt/friendly-snippets/" },
+					paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets/" },
 				})
+				require('snippets')
 			end,
 			requires = {
-				"rafamadriz/friendly-snippets", event = "InsertCharPre" , commit = pluginCommits.friendly_snippets },
+				"rafamadriz/friendly-snippets", event = "InsertCharPre", commit = pluginCommits.friendly_snippets },
 		})
 		if O.lsp_client == true then
 			use({
 				"neovim/nvim-lspconfig",
-			commit = pluginCommits.nvim_lspconfig,
+				commit = pluginCommits.nvim_lspconfig,
 			})
 			use({
 				"williamboman/nvim-lsp-installer",
-			commit = pluginCommits.nvim_lsp_installer,
+				commit = pluginCommits.nvim_lsp_installer,
 			})
 			use({
 				"hrsh7th/nvim-cmp",
-			commit = pluginCommits.nvim_cmp,
+				commit = pluginCommits.nvim_cmp,
 				opt = false,
 				requires = {
-					{"hrsh7th/cmp-nvim-lsp",commit = pluginCommits.cmp_nvim_lsp},
-					{"hrsh7th/cmp-buffer" , commit = pluginCommits.cmp_buffer} ,
-					{"hrsh7th/cmp-path",commit = pluginCommits.cmp_path},
-					{"hrsh7th/cmp-calc",commit = pluginCommits.cmp_calc},
-					{"hrsh7th/cmp-nvim-lua",commit = pluginCommits.cmp_nvim_lua},
-					{"f3fora/cmp-spell",commit = pluginCommits.cmp_spell},
-					{"kdheepak/cmp-latex-symbols",commit = pluginCommits.cmp_latex_symbols},
-					{"windwp/nvim-autopairs",commit = pluginCommits.nvim_autopairs},
-					{"hrsh7th/cmp-cmdline",commit = pluginCommits.cmp_cmdline},
-					{"uga-rosa/cmp-dictionary",commit = pluginCommits.cmp_dictionary},
+					{ "hrsh7th/cmp-nvim-lsp", commit = pluginCommits.cmp_nvim_lsp },
+					{ "hrsh7th/cmp-buffer", commit = pluginCommits.cmp_buffer },
+					{ "hrsh7th/cmp-path", commit = pluginCommits.cmp_path },
+					{ "hrsh7th/cmp-calc", commit = pluginCommits.cmp_calc },
+					{ "hrsh7th/cmp-nvim-lua", commit = pluginCommits.cmp_nvim_lua },
+					{ "f3fora/cmp-spell", commit = pluginCommits.cmp_spell },
+					{ "kdheepak/cmp-latex-symbols", commit = pluginCommits.cmp_latex_symbols },
+					{ "windwp/nvim-autopairs", commit = pluginCommits.nvim_autopairs },
+					{ "hrsh7th/cmp-cmdline", commit = pluginCommits.cmp_cmdline },
+					{ "uga-rosa/cmp-dictionary", commit = pluginCommits.cmp_dictionary },
 					-- "hrsh7th/cmp-nvim-lsp-signature-help",
-					{"saadparwaiz1/cmp_luasnip",commit = pluginCommits.cmp_luasnip},
+					{ "saadparwaiz1/cmp_luasnip", commit = pluginCommits.cmp_luasnip },
 				},
 			})
 			use({
@@ -211,7 +281,7 @@ return packer.startup({
 				commit = pluginCommits.lua_language_server,
 				disable = not O.plugin.sumneko.enable,
 			})
-			use({"onsails/lspkind-nvim" ,commit = pluginCommits.lspkind_nvim})
+			use({ "onsails/lspkind-nvim", commit = pluginCommits.lspkind_nvim })
 			require("lsp")
 		end
 		-- git related
@@ -231,16 +301,16 @@ return packer.startup({
 		})
 		use({
 			"rhysd/git-messenger.vim",
-				commit = pluginCommits.git_messenger_vim,
+			commit = pluginCommits.git_messenger_vim,
 			disable = not O.plugin.gitmessenger.enable,
 		})
 		use({
 			"TimUntersberger/neogit",
-				commit = pluginCommits.neogit,
+			commit = pluginCommits.neogit,
 			opt = false,
 			requires = {
-				{"nvim-lua/plenary.nvim",commit = pluginCommits.plenary_nvim},
-				{"sindrets/diffview.nvim",commit = pluginCommits.diffview_nvim},
+				{ "nvim-lua/plenary.nvim", commit = pluginCommits.plenary_nvim },
+				{ "sindrets/diffview.nvim", commit = pluginCommits.diffview_nvim },
 			},
 			disable = not O.plugin.neogit.enable,
 			config = function()
@@ -249,12 +319,12 @@ return packer.startup({
 		})
 		use({
 			"kevinhwang91/nvim-bqf",
-				commit = pluginCommits.nvim_bqf,
+			commit = pluginCommits.nvim_bqf,
 			disable = not O.plugin.bqbf.enable,
 		})
 		use({
 			"nvim-telescope/telescope.nvim",
-				commit = pluginCommits.telescope_nvim,
+			commit = pluginCommits.telescope_nvim,
 			config = function()
 				require("plugincfg.telescope")
 				require("telescope").load_extension("media_files")
@@ -262,9 +332,9 @@ return packer.startup({
 			end,
 			disable = not O.plugin.telescope.enable,
 			requires = {
-				{ "nvim-telescope/telescope-media-files.nvim",commit = pluginCommits.telescope_media_files_nvim },
-				{ "nvim-telescope/telescope-fzf-writer.nvim" ,commit = pluginCommits.telescope_fzf_writer_nvim},
-				{ "nvim-telescope/telescope-fzf-native.nvim", run = "make",commit = pluginCommits.telescope_fzf_native_nvim },
+				{ "nvim-telescope/telescope-media-files.nvim", commit = pluginCommits.telescope_media_files_nvim },
+				{ "nvim-telescope/telescope-fzf-writer.nvim", commit = pluginCommits.telescope_fzf_writer_nvim },
+				{ "nvim-telescope/telescope-fzf-native.nvim", run = "make", commit = pluginCommits.telescope_fzf_native_nvim },
 			},
 		})
 		use({
@@ -384,9 +454,9 @@ return packer.startup({
 			disable = not O.plugin.galaxyline.enable,
 		})
 		use({
-		"akinsho/bufferline.nvim",
-		commit = pluginCommits.bufferline_nvim,
-		config = function () require('plugincfg.bufferline') end
+			"akinsho/bufferline.nvim",
+			commit = pluginCommits.bufferline_nvim,
+			config = function() require('plugincfg.bufferline') end
 		})
 
 		-- markdown
@@ -417,15 +487,16 @@ return packer.startup({
 		use({
 			"nvim-treesitter/nvim-treesitter",
 			commit = pluginCommits.nvim_treesitter,
-		run = ":TSUpdate",
+			run = ":TSUpdate",
 			config = function()
 				require("plugincfg.treesitter").config()
 			end,
 			requires = {
-				{"nvim-treesitter/nvim-treesitter-refactor",commit = pluginCommits.nvim_treesitter_refactor},
-				{"nvim-treesitter/nvim-treesitter-textobjects",commit = pluginCommits.nvim_treesitter_textobjects},
-				{"romgrk/nvim-treesitter-context",commit = pluginCommits.nvim_treesitter_context},
-				{"p00f/nvim-ts-rainbow",commit = pluginCommits.nvim_ts_rainbow},
+				{ "nvim-treesitter/playground" },
+				{ "nvim-treesitter/nvim-treesitter-refactor", commit = pluginCommits.nvim_treesitter_refactor },
+				{ "nvim-treesitter/nvim-treesitter-textobjects", commit = pluginCommits.nvim_treesitter_textobjects },
+				{ "romgrk/nvim-treesitter-context", commit = pluginCommits.nvim_treesitter_context },
+				{ "p00f/nvim-ts-rainbow", commit = pluginCommits.nvim_ts_rainbow },
 			},
 			disable = not O.plugin.treesitter.enable,
 		})
@@ -460,7 +531,7 @@ return packer.startup({
 			"andymass/vim-matchup",
 			event = "CursorMoved",
 			config = function()
-				vim.g.matchup_matchparen_offscreen = {method = 'popup'}
+				vim.g.matchup_matchparen_offscreen = { method = 'popup' }
 			end,
 			disable = not O.plugin.matchup.enable,
 		})
@@ -481,7 +552,7 @@ return packer.startup({
 				require("colorizer").setup()
 			end,
 		})
-			use ({"kyazdani42/nvim-web-devicons",commit = pluginCommits.nvim_web_devicons})
+		use({ "kyazdani42/nvim-web-devicons", commit = pluginCommits.nvim_web_devicons })
 		use({
 			"folke/trouble.nvim",
 			commit = pluginCommits.trouble_nvim,
@@ -494,10 +565,14 @@ return packer.startup({
 			commit = pluginCommits.vscode_nvim,
 		}
 		use {
+			commit = pluginCommits.gruvbox,
 			'sainnhe/gruvbox-material',
 		}
 		use {
 			"cespare/vim-go-templates"
+		}
+		use {
+			"rcarriga/nvim-notify"
 		}
 		require("packer_compiled")
 	end,

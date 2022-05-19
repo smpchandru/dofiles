@@ -29,7 +29,7 @@ opt.tabstop = 4
 opt.guifont = "JetBrains Mono Regular:h18"
 opt.smarttab = true
 opt.autoindent = true
-opt.laststatus = 2
+opt.laststatus = 3
 opt.background = "dark"
 opt.syntax = "on"
 opt.filetype = "on"
@@ -62,9 +62,10 @@ vim.cmd("highlight ColorColumn ctermbg=1")
 vim.cmd("hi Search cterm=NONE ctermfg=grey ctermbg=blue")
 vim.cmd("highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15")
 vim.g.highlightedyank_highlight_duration = 10000
+vim.g.gruvbox_material_background = 'dark'
 vim.cmd("colorscheme " .. O.colorscheme)
-vim.g.gruvbox_material_background = 'hard'
 vim.opt.listchars:append("eol:↴")
 if vim.g.neovide then
 	vim.cmd("set mouse=a")
 end
+vim.notify = require("notify")

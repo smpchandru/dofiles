@@ -1,4 +1,20 @@
 -- Lspkind config
+function getLuaLibPath()
+	local i, t, popen = 0, {}, io.popen
+	local parentDir = { vim.fn.stdpath('data') .. "/site/pack/packer/start/", vim.fn.stdpath('data') .. "/site/pack/packer/opt/" }
+	for _, k in pairs(parentDir) do
+		print(k)
+		local pfile = popen('ls -1D "' .. k .. '"')
+		for filename in pfile:lines() do
+			print(filename)
+			i = i + 1
+			t[i] = k .. filename .. "/lua"
+		end
+		pfile:close()
+	end
+	return t
+end
+
 require("lspkind").init({
 	mode = "symbol_text",
 	preset = "codicons",
@@ -162,7 +178,19 @@ lsp_installer.on_server_ready(function(server)
 	--     opts.root_dir = function() ... end
 	-- end
 	if server.name == "sumneko_lua" then
-		opts.settings = { Lua = { diagnostics = { globals = { "vim" } } } }
+		opts.settings = {
+			Lua = {
+				diagnostics = { globals = { "vim" } },
+				workspace = {
+					-- library = getLuaLibPath(),
+					library = {
+						vim.fn.stdpath('data') .. "/site/pack/packer/start/nvim-treesitter/lua",
+						vim.fn.stdpath('config') .. "/lua"
+					}
+				}
+			}
+
+		}
 	end
 
 	-- This setup() function is exactly the same as lspconfig's setup function.
