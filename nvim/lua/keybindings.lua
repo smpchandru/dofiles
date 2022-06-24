@@ -39,15 +39,15 @@ map("n", "<C-b>", "<C-b>M", { noremap = true, silent = true })
 -- navigate buffers
 map("n", "<TAB>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
 map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-map("n", "<C-p>", ":Telescope find_files<CR>", { noremap = true, silent = true })
+map("n", "<C-p>", "<cmd>Files<CR>", { noremap = true, silent = true })
 -- map('n' , '<C-p>'     , ':lua require("telescope").extensions.fzf_writer.files()<CR>'       , {noremap = true , silent = true})
-map("n", "<leader>b", ":Telescope buffers<CR>", { noremap = true, silent = true })
-map(
+map("n", "<leader>b", "<cmd>Buffers<CR>", { noremap = true, silent = true })
+--[[ map(
 	"n",
 	"<C-g>",
 	':lua require("telescope").extensions.fzf_writer.staged_grep()<CR>',
 	{ noremap = true, silent = true }
-)
+) ]]
 map(
 	"n",
 	"<C-s>",
@@ -95,6 +95,6 @@ end
 
 -- navigte back with mouse right clicks
 map("n", "<C-RightMouse>", "<C-t>", { silent = true })
-map("n", "<C-LeftMouse>",":lua vim.lsp.buf.definition()<CR>", { silent = true })
+map("n", "<C-LeftMouse>", ":lua vim.lsp.buf.definition()<CR>", { silent = true })
 -- projects explorer
 map("n", "<leader>w", ":Telescope projects<CR>", { silent = true })

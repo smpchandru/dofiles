@@ -99,7 +99,7 @@ M.config = function()
 				"sort BufferLines automatically by language",
 			},
 		},
-		f = { "<cmd>Telescope find_files<CR>"},
+		f = { "<cmd>Telescope find_files<CR>" },
 		p = {
 			name = "Packer",
 			i = { "<cmd>PackerInstall<cr>", "Install" },
@@ -107,7 +107,7 @@ M.config = function()
 			s = { "<cmd>PackerSync<cr>", "Sync" },
 			u = { "<cmd>PackerUpdate<cr>", "Update" },
 		},
-		g = {
+		--[[ g = {
 			name = "Git",
 			j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
 			k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
@@ -131,7 +131,7 @@ M.config = function()
 				"<cmd>Telescope git_bcommits<cr>",
 				"Checkout commit(for current file)",
 			},
-		},
+		}, ]]
 		S = {
 			name = "Session",
 			s = { "<cmd>SessionSave<cr>", "Save Session" },

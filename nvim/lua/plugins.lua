@@ -14,7 +14,6 @@ if not packer_ok then
 	return
 end
 
-
 packer.init({
 	-- compile_path = vim.fn.stdpath('data')..'/site/pack/loader/start/packer.nvim/plugin/packer_compiled.vim',
 	compile_path = require("packer.util").join_paths(vim.fn.stdpath("config"), "plugin", "packer_compiled.vim"),
@@ -91,7 +90,6 @@ local pluginCommits = {
 	symbols_outline_nvim = "master",
 	vim_delve = "master",
 	gruvbox = "chandru",
-
 }
 --[[ local pluginCommits = {
 	bufferline_nvim="871495d9e2dbe3314a421fd2d5e46f47de7ee537",
@@ -161,7 +159,6 @@ local pluginCommits = {
 	
 } ]]
 
-
 return packer.startup({
 	function(use)
 		-- Packer can manage itself as an optional plugin
@@ -201,6 +198,7 @@ return packer.startup({
 			lock = true,
 			disable = not O.plugin.popup.enable,
 		})
+		-- use("nvim-lua/popup.nvim")
 		-- project
 		use({
 			"ahmedkhalf/project.nvim",
@@ -230,10 +228,13 @@ return packer.startup({
 					include = { "go", "python", "bash" },
 					paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets/" },
 				})
-				require('snippets')
+				require("snippets")
 			end,
 			requires = {
-				"rafamadriz/friendly-snippets", event = "InsertCharPre", commit = pluginCommits.friendly_snippets },
+				"rafamadriz/friendly-snippets",
+				event = "InsertCharPre",
+				commit = pluginCommits.friendly_snippets,
+			},
 		})
 		if O.lsp_client == true then
 			use({
@@ -297,7 +298,7 @@ return packer.startup({
 				"nvim-lua/plenary.nvim",
 			},
 			disable = not O.plugin.gitsigns.enable,
-			event = "BufRead",
+			-- event = "BufRead",
 		})
 		use({
 			"rhysd/git-messenger.vim",
@@ -334,7 +335,11 @@ return packer.startup({
 			requires = {
 				{ "nvim-telescope/telescope-media-files.nvim", commit = pluginCommits.telescope_media_files_nvim },
 				{ "nvim-telescope/telescope-fzf-writer.nvim", commit = pluginCommits.telescope_fzf_writer_nvim },
-				{ "nvim-telescope/telescope-fzf-native.nvim", run = "make", commit = pluginCommits.telescope_fzf_native_nvim },
+				{
+					"nvim-telescope/telescope-fzf-native.nvim",
+					run = "make",
+					commit = pluginCommits.telescope_fzf_native_nvim,
+				},
 			},
 		})
 		use({
@@ -456,7 +461,9 @@ return packer.startup({
 		use({
 			"akinsho/bufferline.nvim",
 			commit = pluginCommits.bufferline_nvim,
-			config = function() require('plugincfg.bufferline') end
+			config = function()
+				require("plugincfg.bufferline")
+			end,
 		})
 
 		-- markdown
@@ -531,7 +538,7 @@ return packer.startup({
 			"andymass/vim-matchup",
 			event = "CursorMoved",
 			config = function()
-				vim.g.matchup_matchparen_offscreen = { method = 'popup' }
+				vim.g.matchup_matchparen_offscreen = { method = "popup" }
 			end,
 			disable = not O.plugin.matchup.enable,
 		})
@@ -560,20 +567,53 @@ return packer.startup({
 				require("trouble").setup({})
 			end,
 		})
-		use {
-			'Mofiqul/vscode.nvim',
+		use({
+			"Mofiqul/vscode.nvim",
 			commit = pluginCommits.vscode_nvim,
-		}
-		use {
+		})
+		use({
 			commit = pluginCommits.gruvbox,
-			'sainnhe/gruvbox-material',
-		}
-		use {
-			"cespare/vim-go-templates"
-		}
-		use {
-			"rcarriga/nvim-notify"
-		}
+			"sainnhe/gruvbox-material",
+		})
+		use({
+			"cespare/vim-go-templates",
+		})
+		use({
+			"rcarriga/nvim-notify",
+		})
+		use({ "simrat39/rust-tools.nvim",
+			config = function()
+				require 'plugincfg.rust-tools'
+			end
+		})
+		use({
+			"anuvyklack/hydra.nvim",
+			requires = 'anuvyklack/keymap-layer.nvim',
+			config = function()
+				require 'plugincfg.hydracfg'.config()
+			end
+		})
+		use({
+			"junegunn/fzf",
+			run = function()
+				vim.fn["fzf#install()"]()
+			end
+
+		})
+		use({
+			"junegunn/fzf.vim",
+		})
+		--[[ use({
+			"jose-elias-alvarez/null-ls.nvim",
+			config = function()
+				require("null-ls").setup({
+					sources = {
+						require("null-ls").builtins.formatting.stylua,
+						require("null-ls").builtins.code_actions.gitsigns,
+					},
+				})
+			end,
+		}) ]]
 		require("packer_compiled")
 	end,
 	config = {
@@ -582,5 +622,4 @@ return packer.startup({
 		},
 		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 	},
-
 })
