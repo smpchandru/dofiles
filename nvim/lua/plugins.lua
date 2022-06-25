@@ -590,7 +590,7 @@ return packer.startup({
 			"anuvyklack/hydra.nvim",
 			requires = 'anuvyklack/keymap-layer.nvim',
 			config = function()
-				require 'plugincfg.hydracfg'.config()
+				require 'plugincfg.hydracfg'
 			end
 		})
 		use({
