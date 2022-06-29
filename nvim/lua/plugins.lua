@@ -225,7 +225,7 @@ return packer.startup({
 			config = function()
 				require("plugincfg.snippets")
 				require("luasnip/loaders/from_vscode").load({
-					include = { "go", "python", "bash" },
+					include = { "go", "python", "bash", "rust" },
 					paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets/" },
 				})
 				require("snippets")
@@ -603,6 +603,18 @@ return packer.startup({
 		use({
 			"junegunn/fzf.vim",
 		})
+		use({ "dstein64/vim-startuptime" })
+		use {
+			"max397574/colortils.nvim",
+			cmd = "Colortils",
+			config = function()
+				require("colortils").setup({
+					register = "+", -- register in which color codes will be copied: any register
+					color_preview = "█ %s", -- preview for colors, if it contains `%s` this will be replaced with a hex color code of the color
+					border = "rounded", -- border for the float
+				})
+			end,
+		}
 		--[[ use({
 			"jose-elias-alvarez/null-ls.nvim",
 			config = function()

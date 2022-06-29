@@ -55,7 +55,7 @@ O = {
 		symbol_outline = { enable = false },
 		lens = { enable = false },
 		kommentary = { enable = false },
-		dashboard = { enable = true },
+		dashboard = { enable = false },
 	},
 }
-vim.g.git_messenger_no_default_mappings = true
+-- vim.g.git_messenger_no_default_mappings = true

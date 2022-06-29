@@ -194,7 +194,12 @@ local opts = {
 					}
 				},
 				checkOnSave = {
-					command = "clippy"
+					-- command = "clippy"
+					allFeatures = true,
+					overrideCommand = {
+						'cargo', 'clippy', '--workspace', '--message-format=json',
+						'--all-targets', '--all-features'
+					}
 				},
 			}
 		}

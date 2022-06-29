@@ -94,7 +94,7 @@ au VimEnter * highlight GitLens guifg=#5C5656
 
 au VimEnter * highlight Floaterm guibg=NONE
 au VimEnter * highlight FloatermBorder guibg=NONE guifg=#ffdab9 
-let g:neovide_fullscreen=v:true
+" let g:neovide_fullscreen=v:true
 set shiftwidth=4
 let g:neovide_floating_window_opacity = 1.0
 let g:neovide_window_floating_blur=0
